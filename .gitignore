@@ -1,5 +1,2 @@
-#忽略提交的文件
-.idea/Bigfish.iml
-.idea/misc.xml
-.idea/workspace.xml
+/.idea
 *.pyc
