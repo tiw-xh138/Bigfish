@@ -2,7 +2,6 @@
 import os
 BASE_DIR_NAME = "Bigfish"
 
-
 class UserDirectory(object):
     """用户目录管理,维护一个用户主目录,已经主目录下的两个子目录(函数目录,策略目录)"""
     def __init__(self, user):
