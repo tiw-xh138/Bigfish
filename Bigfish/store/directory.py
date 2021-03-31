@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
 
-import shutil
-
 BASE_DIR_NAME = "Bigfish"
 
 
 class UserDirectory(object):
     """用户目录管理,维护一个用户主目录,已经主目录下的两个子目录(函数目录,策略目录)"""
+
     def __init__(self, user):
         """
         :param user: 必须传入用户对象
@@ -43,11 +42,7 @@ class UserDirectory(object):
         """
         # 以user_id 作为用户的主目录
         if not code:
-            home = self.__get_dir__(self.__get_root__(), self.__user__.user_id)
-            demo = os.path.join(home, "demo")
-            if not os.path.exists(demo):
-                shutil.copy("demo", home)
-            return home
+            return self.__get_dir__(self.__get_root__(), self.__user__.user_id)
         elif code.code_type == 1:
             return self.get_strategy_dir()
         else:
@@ -86,6 +81,16 @@ class UserDirectory(object):
         获取用户编写的策略列表
         """
         return os.listdir(self.get_strategy_dir())
+
+    # @DeprecationWarning
+    @staticmethod
+    def get_sys_func_list():
+        """
+        获取用户
+        """
+        print(os.path.dirname(__file__))
+        path = os.path.join(os.path.dirname(__file__), '../../bigfish_functions')
+        return list(set(os.listdir(path))-{'__init__.py', '__pycache__'})
 
     def strategy_exists(self, strategy_name):
         """
